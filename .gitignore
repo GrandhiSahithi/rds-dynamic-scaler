@@ -1,0 +1,22 @@
+# Ignore AWS credentials
+*.pem
+.aws/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment folders
+.env/
+.venv/
+
+# Ignore VS Code settings
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+desktop.ini

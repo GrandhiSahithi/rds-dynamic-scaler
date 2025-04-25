@@ -1,0 +1,10 @@
+# Create RDS Scaler Parameters in AWS Systems Manager Parameter Store
+# Run these AWS CLI commands to set thresholds dynamically
+
+aws ssm put-parameter --name "/rds-scaler/min-storage" --type "String" --value "50"
+aws ssm put-parameter --name "/rds-scaler/max-storage" --type "String" --value "100"
+aws ssm put-parameter --name "/rds-scaler/storage-step" --type "String" --value "10"
+
+aws ssm put-parameter --name "/rds-scaler/min-iops" --type "String" --value "3000"
+aws ssm put-parameter --name "/rds-scaler/max-iops" --type "String" --value "12000"
+aws ssm put-parameter --name "/rds-scaler/iops-step" --type "String" --value "1000"

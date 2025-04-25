@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Infrastructure - Dynamic RDS Scaler Setup (RDS + SNS)
+
+Resources:
+  
+  RDSSQLInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: dynamicload-db
+      AllocatedStorage: 50
+      DBInstanceClass: db.t3.micro
+      Engine: sqlserver-ex
+      MasterUsername: dynadmin
+      MasterUserPassword: DynamoStrongPass123  # (You can override during launch)
+      StorageType: gp3
+      PubliclyAccessible: true
+      MultiAZ: true
+      BackupRetentionPeriod: 7
+      EnablePerformanceInsights: true
+      AutoMinorVersionUpgrade: true
+
+  ScalingAlertsSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: rds-scaling-alerts
+
+Outputs:
+
+  RDSInstanceEndpoint:
+    Description: RDS Instance Endpoint
+    Value: !GetAtt RDSSQLInstance.Endpoint.Address
+
+  SNSTopicArn:
+    Description: SNS Topic ARN for notifications
+    Value: !Ref ScalingAlertsSNSTopic
+
